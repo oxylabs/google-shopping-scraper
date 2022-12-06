@@ -1,1 +1,1 @@
-# google-shopping-scraper
+# Google Shopping Scraper
