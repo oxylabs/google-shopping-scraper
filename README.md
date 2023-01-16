@@ -1,5 +1,11 @@
 # Google Shopping Scraper
 
+As part of [**E-Commerce Scraper API**](https://github.com/oxylabs/ecommerce-scraper-api-guide), Google Shopping Scraper extracts timely e-commerce data in raw HTML or structured JSON format. The scraper offers a maintenance-free data collection infrastructure that automates the bulk of underlying processes, from sending HTTP requests to data parsing. 
+
+The underlying measures, such as proxies, ensure considerably fewer CAPTCHAs and IP blocks. The scraper supports localized results from almost any locale worldwide (195 countries) with country-level and postal code targeting.
+
+Additionally, the scraper can automate recurring scraping and parsing jobs through [**Scheduler**](https://developers.oxylabs.io/scraper-apis/scheduler-beta), load dynamic websites that use JavaScript for rendering content, and retrieve results via the API or directly to Google Cloud Storage or Amazon S3 storage bucket.
+
 ### How it works
 
 There are various page types we can scrape and parse on Google Shopping. You can either provide us with a full [**URL**](#url) or a few input parameters via specifically built data sources (e.g. [**Search**](#shopping-search), [**Product**](#shopping-product), [**Product Pricing**](#product-pricing) so we can form the URL on our end.
@@ -226,4 +232,6 @@ response = requests.request(
 pprint(response.json())
 ```
 
-Code examples for other languages can be found [**here.**](https://github.com/oxylabs/google-shopping-scraper/tree/main/code%20examples)
+Code examples for other languages can be found [**here.**](https://github.com/oxylabs/google-shopping-scraper/tree/main/code%20examples).
+
+If you have questions or concerns about Google Shopping Scraper or associated features, get in touch via (support@oxylabs.io) or through the live chat on our [**website**](https://oxylabs.io/).
