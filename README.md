@@ -238,3 +238,5 @@ pprint(response.json())
 Code examples for other languages can be found [**here.**](https://github.com/oxylabs/google-shopping-scraper/tree/main/code%20examples).
 
 If you have questions or concerns about Google Shopping Scraper or associated features, get in touch via (support@oxylabs.io) or through the live chat on our [**website**](https://oxylabs.io/).
+
+Also, check this tutorial on [pypi](https://pypi.org/project/google-shopping-scraper-api/)
