@@ -4,6 +4,8 @@
 
 [![](https://dcbadge.vercel.app/api/server/eWsVUJrnG5)](https://discord.gg/GbxmdGhZjq)
 
+In this tutorial, we'll demonstrate how to extract data from Google Shopping. In the first part of the tutorial, we'll use a free tool, built for smaller scale scraping. In the second part, we'll show how to use Oxylabs API for more effective, bigger scale scraping. 
+
 ## Free Google Shoppping Scraper
 
 A free tool used to get shopping items from Google Shopping for a provided search query.
@@ -51,16 +53,17 @@ Here's an example of how the data can look like:
 
 ### Notes
 
-In case the code doesn't work or your project is of bigger scale, please refer to the second part of the tutorial. There, we showcase how to scrape public data with Oxylabs Scraper API.
+In case the code doesn't work or your project is of bigger scale, please refer to the second part of the tutorial. There, we showcase how to scrape public data with Oxylabs API.
 
+## Scraping Google Shopping with Oxylabs API
 
-## Scrape public Google Shopping data with Oxylabs E-Commerce Scraper API
-
-As part of [**E-Commerce Scraper API**](https://github.com/oxylabs/ecommerce-scraper-api-guide), [Google Shopping Scraper](https://oxy.yt/qadX) extracts timely e-commerce data in raw HTML or structured JSON format. The scraper offers a maintenance-free data collection infrastructure that automates the bulk of underlying processes, from sending HTTP requests to data parsing. 
+[Google Shopping Scraper](https://oxy.yt/qadX) extracts timely e-commerce data in raw HTML or structured JSON format. The scraper offers a maintenance-free data collection infrastructure that automates the bulk of underlying processes, from sending HTTP requests to data parsing. 
 
 The underlying measures, such as proxies, ensure considerably fewer CAPTCHAs and IP blocks. The scraper supports localized results from almost any locale worldwide (195 countries) with country-level and postal code targeting.
 
 Additionally, the scraper can automate recurring scraping and parsing jobs through [**Scheduler**](https://developers.oxylabs.io/scraper-apis/scheduler-beta), load dynamic websites that use JavaScript for rendering content, and retrieve results via the API or directly to Google Cloud Storage or Amazon S3 storage bucket.
+
+Keep in mind that to access this tool, you'll need an active subscription – a paid plan or a free 7-day trial. You can claim your trial via our self-service [dashboard](https://dashboard.oxylabs.io/).  
 
 ### How it works
 
