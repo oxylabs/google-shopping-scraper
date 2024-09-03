@@ -4,7 +4,29 @@
 
 [![](https://dcbadge.vercel.app/api/server/eWsVUJrnG5)](https://discord.gg/GbxmdGhZjq)
 
-In this tutorial, we'll demonstrate how to extract data from Google Shopping. In the first part of the tutorial, we'll use a free tool, built for smaller scale scraping. In the second part, we'll show how to use Oxylabs API for more effective, bigger scale scraping. 
+- [Google Shopping Scraper](#google-shopping-scraper)
+  * [Free Google Shoppping Scraper](#free-google-shoppping-scraper)
+    + [Prerequisites](#prerequisites)
+    + [Installation](#installation)
+    + [Scraping Google Shopping](#scraping-google-shopping)
+    + [Notes](#notes)
+  * [Scraping Google Shopping with Oxylabs API](#scraping-google-shopping-with-oxylabs-api)
+    + [How it works](#how-it-works)
+    + [Overview](#overview)
+    + [URL](#url)
+      - [Query parameters](#query-parameters)
+      - [Python code example](#python-code-example)
+    + [Shopping Search](#shopping-search)
+      - [Query parameters](#query-parameters-1)
+      - [Python code example](#python-code-example-1)
+    + [Shopping Product](#shopping-product)
+      - [Query parameters](#query-parameters-2)
+      - [Python code example](#python-code-example-2)
+    + [Product Pricing](#product-pricing)
+      - [Query parameters](#query-parameters-3)
+      - [Python code example](#python-code-example-3)
+
+In this tutorial, we'll demonstrate how to extract data from Google Shopping. In the first part of the tutorial, we'll use a free tool, built for smaller scale scraping. In the second part, we'll show how to use Oxylabs API for more effective, bigger scale scraping. To use Oxylabs API, get a **free trial** [here](https://dashboard.oxylabs.io/).
 
 ## Free Google Shoppping Scraper
 
