@@ -4,6 +4,57 @@
 
 [![](https://dcbadge.vercel.app/api/server/eWsVUJrnG5)](https://discord.gg/GbxmdGhZjq)
 
+## Free Google Shoppping Scraper
+
+A free tool used to get shopping items from Google Shopping for a provided search query.
+
+### Prerequisites
+
+To run this tool, you need to have Python 3.11 installed in your system.
+
+### Installation
+
+Open up a terminal window, navigate to this repository and run this command:
+
+```make install```
+
+### Scraping Google Shopping
+
+To scrape shopping items from Google Shopping, simply run this command in your terminal with a query of your choosing:
+
+```make scrape QUERY="<your_shopping_search_query>"```
+
+For this example, let's try scraping Google Shopping results for cat food. The command should look something like this:
+
+```make scrape QUERY="cat food"```
+
+Make sure to enclose your query in quotation marks, otherwise the tool might have trouble parsing it.
+
+After running the command, your terminal should look something like this:
+
+<img width="786" alt="image" src="https://github.com/user-attachments/assets/43b10ce1-1f4f-49c7-bdbd-81246c5bc875">
+
+After the tool has finished running, you should see a file named `shopping.csv` in your current directory.
+
+This file contains shopping listings for the query you entered. 
+The generated CSV file contains these columns of data:
+
+- `title` - The title of the item.
+- `price` - The price of the item.
+- `delivery_price` - The delivery price of the item.
+- `review` - An optional review field, which can contain a rating of up to 5 stars, and a total number of reviews.
+- `url` - The URL of the Google Shopping page for that item.
+
+Here's an example of how the data can look like:
+
+<img width="1058" alt="image" src="https://github.com/user-attachments/assets/7176c269-b28a-4333-abb6-992e2a40b153">
+
+### Notes
+
+In case the code doesn't work or your project is of bigger scale, please refer to the second part of the tutorial. There, we showcase how to scrape public data with Oxylabs Scraper API.
+
+
+## Scrape public Google Shopping data with Oxylabs E-Commerce Scraper API
 
 As part of [**E-Commerce Scraper API**](https://github.com/oxylabs/ecommerce-scraper-api-guide), [Google Shopping Scraper](https://oxy.yt/qadX) extracts timely e-commerce data in raw HTML or structured JSON format. The scraper offers a maintenance-free data collection infrastructure that automates the bulk of underlying processes, from sending HTTP requests to data parsing. 
 
