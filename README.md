@@ -85,7 +85,9 @@ The underlying measures, such as proxies, ensure considerably fewer CAPTCHAs and
 
 Additionally, the scraper can automate recurring scraping and parsing jobs through [**Scheduler**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/scheduler), load dynamic websites that use JavaScript for rendering content, and retrieve results via the API or directly to Google Cloud Storage or Amazon S3 storage bucket.
 
-Keep in mind that to access this tool, you'll need an active subscription – a paid plan or a free 7-day trial. You can claim your trial via our self-service [dashboard](https://dashboard.oxylabs.io/).  
+You can also customize the folder and file names of the results delivered to your cloud storage by using template variables like `{{source}}`, `{{query}}`, `{{job_id}}`, and `{{extension}}` in your `storage_url`. This makes it easier to identify files at a glance and keep your storage organized by search term, job ID, or other criteria.
+
+Keep in mind that to access this tool, you'll need an active subscription – a paid plan or a free trial. You can claim your trial via our self-service [dashboard](https://dashboard.oxylabs.io/).  
 
 ### How it works
 
