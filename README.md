@@ -83,7 +83,7 @@ In case the code doesn't work or your project is of bigger scale, please refer t
 
 The underlying measures, such as proxies, ensure considerably fewer CAPTCHAs and IP blocks. The scraper supports localized results from almost any locale worldwide (195 countries) with country-level and postal code targeting.
 
-Additionally, the scraper can automate recurring scraping and parsing jobs through [**Scheduler**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/scheduler), load dynamic websites that use JavaScript for rendering content, and retrieve results via the API or directly to Amazon S3, Google Cloud Storage, Alibaba Cloud OSS, or any other S3-compatible destinations.
+Additionally, the scraper can automate recurring scraping and parsing jobs through [**Scheduler**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/scheduler), load dynamic websites that use JavaScript for rendering content, and retrieve results via the API or directly to Amazon S3, Google Cloud Storage, Alibaba Cloud OSS, or any other S3-compatible destination.
 
 You can also customize the folder and file names of the results delivered to your cloud storage by using template variables like `{{source}}`, `{{query}}`, `{{job_id}}`, and `{{extension}}` in your `storage_url`. This makes it easier to identify files at a glance and keep your storage organized by search term, job ID, or other criteria.
 
