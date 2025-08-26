@@ -108,7 +108,7 @@ Below is a quick overview of all the available data `source` values we support w
 
 The `google` source is designed to retrieve content from various Google Shopping URLs. Instead of sending multiple parameters and letting us form and scrape Google Shopping URLs, you can provide us with a URL to the required Google Shopping page. We do not strip any parameters or alter your URLs in any other way.
 
-This data source also supports parsed data (structured data in JSON format), as long as the URL submitted links to a page that we can parse.
+This data source also supports parsed data (structured data in JSON format), as long as the URL submitted links to a page that we can parse. You can also get [multiple result types](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/result-processing-and-storage/output-types/multi-format-output) (parsed, Markdown, screenshots, XHR, and raw) simultaneously in a single API response.
 
 #### Query parameters
 
