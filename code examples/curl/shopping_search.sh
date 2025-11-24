@@ -1,0 +1,2 @@
+curl --user user:pass1 'https://realtime.oxylabs.io/v1/queries' -H "Content-Type: application/json"
+ -d '{"source": "google_shopping_search", "query": "adidas", "geo_location": "New York,New York,United States", "pages": 2, "context": [{"key": "sort_by", "value": "pd"}, {"key": "min_price", "value": 20}], "parse": true}'
