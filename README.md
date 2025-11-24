@@ -22,9 +22,6 @@
     + [Shopping Product](#shopping-product)
       - [Query parameters](#query-parameters-2)
       - [Python code example](#python-code-example-2)
-    + [Product Pricing](#product-pricing)
-      - [Query parameters](#query-parameters-3)
-      - [Python code example](#python-code-example-3)
 
 In this tutorial, we'll demonstrate how to extract data from Google Shopping. In the first part of the tutorial, we'll use a free tool, built for smaller scale scraping. In the second part, we'll show how to use Oxylabs API for more effective, bigger scale scraping. To use Oxylabs API, get a **free trial** [here](https://dashboard.oxylabs.io/).
 
@@ -91,7 +88,7 @@ Keep in mind that to access this tool, you'll need an active subscription – a
 
 ### How it works
 
-There are various page types we can scrape and parse on Google Shopping. You can either provide us with a full [**URL**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google/url) or a few input parameters via specifically built data sources (e.g. [**Search**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google/shopping-search), [**Product**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google/shopping-product), [**Product Pricing**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google/product-pricing) so we can form the URL on our end.
+There are various page types we can scrape and parse on Google Shopping. You can either provide us with a full [**URL**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google/url) or a few input parameters via specifically built data sources (e.g. [**Search**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google/shopping/shopping-search) and [**Product**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google/shopping/shopping-product)so we can form the URL on our end.
 
 ### Overview
 
@@ -102,11 +99,10 @@ Below is a quick overview of all the available data `source` values we support w
 | `google`                  | Submit any Google Shopping URL you like.                  | Depends on the URL. |
 | `google_shopping_search`  | Search results for a search term of your choice.          | Yes.                |
 | `google_shopping_product` | Product page of a product ID of your choice.              | Yes.                |
-| `google_shopping_pricing` | List of offers available for a product ID of your choice. | Yes.                |
 
 ### URL
 
-The `google` source is designed to retrieve content from various Google Shopping URLs. Instead of sending multiple parameters and letting us form and scrape Google Shopping URLs, you can provide us with a URL to the required Google Shopping page. We do not strip any parameters or alter your URLs in any other way.
+The `google` source is designed to retrieve content from various Google URLs, including Shopping. Instead of sending multiple parameters and letting us form and scrape Google Shopping URLs, you can provide us with a direct URL to the required Google Shopping page. We do not strip any parameters or alter your URLs in any other way.
 
 This data source also supports parsed data (structured data in JSON format), as long as the URL submitted links to a page that we can parse. You can also get [multiple result types](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/result-processing-and-storage/output-types/multi-format-output) (parsed, Markdown, screenshots, XHR, and raw) simultaneously in a single API response.
 
@@ -114,42 +110,41 @@ This data source also supports parsed data (structured data in JSON format), as 
 
 | Parameter                                                 | Description                                                                                                                                                                                                                                                    | Default Value |
 | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| <mark style="background-color:green;">**`source`**</mark> | Data source. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google).                                                                                                                                                           | `google`      |
+| <mark style="background-color:green;">**`source`**</mark> | Data source. [**More info**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google/url).                                                                                                                                                           | `google`      |
 | <mark style="background-color:green;">**`url`**</mark>    | Direct URL (link) to Google page                                                                                                                                                                                                                               | -             |
-| `user_agent_type`                                         | Device type and browser. The full list can be found [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/user-agent-type).                                                                                                              | `desktop`     |
-| `render`                                                  | Enables JavaScript rendering. [**More info.**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/javascript-rendering)                                                                                                                                          |               |
-| `callback_url`                                            | URL to your callback endpoint. [**More info.**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/integration-methods/push-pull#callback)                                                                                                                                  | -             |
-| `geo_location`                                            | The geographical location that the result should be adapted for. Using this parameter correctly is extremely important to get the right data. For more information, read about our suggested `geo_location` parameter structures [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/geo-location#google). | -             |
+| `user_agent_type`                                         | Device type and browser. The full list can be found [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/http-context-and-job-management/user-agent-type).                                                                                                              | `desktop`     |
+| `render`                                                  | Enables JavaScript rendering. [**More info.**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/js-rendering-and-browser-control/javascript-rendering)                                                                                                                                          |               |
+| `callback_url`                                            | URL to your callback endpoint. [**More info.**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/integration-methods/push-pull#callback)                                                                                                                                  | -             |
+| `geo_location`                                            | The geographical location that the result should be adapted for. Using this parameter correctly is extremely important to get the right data. For more information, read about our suggested `geo_location` parameter structures [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/localization/serp-localization#google). | -             |
 | `parse`                                                   | `true` will return parsed data, as long as the URL submitted is for Google Search.                                                                                                                                                                             | -             |
-
-\- required parameter
 
 #### Python code example
 
 In this example, we make a request to retrieve a Google Shopping Search result for keyword `adidas`, as seen in New York, USA.
 
 ```python 
+import json
 import requests
-from pprint import pprint
 
 # Structure payload.
 payload = {
     'source': 'google',
-    'url': 'https://www.google.com/search?tbm=shop&q=adidas&hl=en',
-    'geo_location': 'New York,New York,United States'
+    'url': 'https://www.google.com/search?udm=28&q=adidas&hl=en',
+    'geo_location': 'New York,New York,United States',
+    'parse': True
 }
 
 # Get response.
 response = requests.request(
     'POST',
     'https://realtime.oxylabs.io/v1/queries',
-    auth=('user', 'pass1'),
-    json=payload,
+    auth=('USERNAME', 'PASSWORD'),
+    json=payload
 )
+print(response.json())
 
-# Instead of response with job status and results url, this will return the
-# JSON response with results.
-pprint(response.json())
+with open('shopping_url.json', 'w') as f:
+    json.dump(response.json(), f, indent=2)
 ```
 
 Code examples for other languages can be found [**here.**](https://github.com/oxylabs/google-shopping-scraper/tree/main/code%20examples)
@@ -162,22 +157,23 @@ The `google_shopping_search` source is designed to retrieve Google Shopping sear
 
 | Parameter                                                 | Description                                                                                                                                                                                                                                                    | Default Value            |
 | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| <mark style="background-color:green;">**`source`**</mark> | Data source. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google).                                                                                                                                                           | `google_shopping_search` |
+| <mark style="background-color:green;">**`source`**</mark> | Data source. [**More info**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google).                                                                                                                                                           | `google_shopping_search` |
 | `domain`                                                  | Domain localization                                                                                                                                                                                                                                            | com                      |
 | <mark style="background-color:green;">**`query`**</mark>  | UTF-encoded keyword                                                                                                                                                                                                                                            | -                        |
 | `start_page`                                              | Starting page number                                                                                                                                                                                                                                           | `1`                      |
 | `pages`                                                   | Number of pages to retrieve                                                                                                                                                                                                                                    | `1`                      |
-| `locale`                                                  | `Accept-Language` header value which changes your Google Shopping page web interface language. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/domain-locale-results-language#locale-1).                                                                                                                              | -                        |
-| `results_language`                                        | Results language. List of supported Google languages can be found [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/domain-locale-results-language#results-language).                                                                                                                                                                | -                        |
-| `geo_location`                                            | The geographical location that the result should be adapted for. Using this parameter correctly is extremely important to get the right data. For more information, read about our suggested `geo_location` parameter structures [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/geo-location#google). | -                        |
-| `user_agent_type`                                         | Device type and browser. The full list can be found [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/user-agent-type).                                                                                                              | `desktop`                |
-| `render`                                                  | Enables JavaScript rendering. [**More info.**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/javascript-rendering)                                                                                                                                          | -                        |
-| `callback_url`                                            | URL to your callback endpoint. [**More info.**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/integration-methods/push-pull#callback)                                                                                                                                  | -                        |
+| `locale`                                                  | `Accept-Language` header value which changes your Google Shopping page web interface language. [**More info**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/localization/domain-locale-results-language#locale-1).                                                                                                                              | -                        |
+| `results_language`                                        | Results language. List of supported Google languages can be found [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/localization/domain-locale-results-language#results-language).                                                                                                                                                                | -                        |
+| `geo_location`                                            | The geographical location that the result should be adapted for. Using this parameter correctly is extremely important to get the right data. For more information, read about our suggested `geo_location` parameter structures [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/localization/serp-localization#google). | -                        |
+| `user_agent_type`                                         | Device type and browser. The full list can be found [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/http-context-and-job-management/user-agent-type).                                                                                                              | `desktop`                |
+| `render`                                                  | Enables JavaScript rendering. Must be set to html to get product tokens. [**More info.**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/js-rendering-and-browser-control/javascript-rendering)                                                                                                                                          | -                        |
+| `callback_url`                                            | URL to your callback endpoint. [**More info.**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/integration-methods/push-pull#callback)                                                                                                                                  | -                        |
 | `parse`                                                   | `true` will return parsed data.                                                                                                                                                          | -                        |
-| <p><code>context</code>:<br><code>nfpr</code></p>         | `true` will turn off spelling auto-correction.                                                                                                                                                                                                                 | `false`                  |
-| <p><code>context</code>:<br><code>sort_by</code></p>      | Sort product list by a given criteria. `r` applies default Google sorting, `rv` - by review score, `p` - by price ascending, `pd` - by price descending                                                                                                        | `r`                      |
-| <p><code>context</code>:<br><code>min_price</code></p>    | Minimum price of products to filter                                                                                                                                                                                                                            | -                        |
-| <p><code>context</code>:<br><code>max_price</code></p>    | Maximum price of products to filter                                                                                                                                                                                                                            | -                        |
+| <p><code>context</code>:<br><code>sort_by</code></p>      | Sort product list by a given criteria. `r` applies default Google sorting, `rv` - by review score, `p` - by price ascending, `pd` - by price descending                                                                                                       | `r`                      |
+| <p><code>context</code>:<br><code>min_price</code></p>    | Minimum price of products to filter                                | -                        |
+| <p><code>context</code>:<br><code>max_price</code></p>    | Maximum price of products to filter                                | -                        |
+| <p><code>context</code>:<br><code>nfpr</code></p>    | `true` will turn off spelling auto-correction.                            | -                        |
+
 
 \- required parameter
 
@@ -186,32 +182,33 @@ The `google_shopping_search` source is designed to retrieve Google Shopping sear
 In this example, we make a request to retrieve the first `4` pages of Google Shopping search for the search term `adidas`, sorted by descending price and minimum price of `$20`.
 
 ```python
+import json
 import requests
-from pprint import pprint
-
 
 # Structure payload.
 payload = {
     'source': 'google_shopping_search',
-    'domain': 'com',
     'query': 'adidas',
-    'pages': 4,
+    'geo_location': 'New York,New York,United States',
+    'pages': 2,
     'context': [
         {'key': 'sort_by', 'value': 'pd'},
         {'key': 'min_price', 'value': 20},
     ],
+    'parse': True
 }
 
 # Get response.
 response = requests.request(
     'POST',
     'https://realtime.oxylabs.io/v1/queries',
-    auth=('user', 'pass1'),
-    json=payload,
+    auth=('USERNAME', 'PASSWORD'),
+    json=payload
 )
+print(response.json())
 
-# Print prettified response to stdout.
-pprint(response.json())
+with open('shopping_search.json', 'w') as f:
+    json.dump(response.json(), f, indent=2)
 ```
 Code examples for other languages can be found [**here.**](https://github.com/oxylabs/google-shopping-scraper/tree/main/code%20examples)
 
@@ -223,99 +220,50 @@ The `google_shopping_product` source is designed to retrieve Google Shopping pro
 
 | Parameter                                                 | Description                                                                                                                                                                                                                                                    | Default Value             |
 | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| <mark style="background-color:green;">**`source`**</mark> | Data source. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google).                                                                                                                                                           | `google_shopping_product` |
+| <mark style="background-color:green;">**`source`**</mark> | Data source. [**More info**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google).                                                                                                                                                           | `google_shopping_product` |
 | `domain`                                                  | Domain localization                                                                                                                                                                                                                                            | com                       |
 | <mark style="background-color:green;">**`query`**</mark>  | UTF-encoded product code                                                                                                                                                                                                                                       | -                         |
-| `locale`                                                  | `Accept-Language` header value which changes your Google Shopping page web interface language. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/domain-locale-results-language#locale-1).                                                                                                                              | -                         |
-| `results_language`                                        | Results language. List of supported Google languages can be found [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/domain-locale-results-language#results-language).                                                                                                                                                                | -                         |
-| `geo_location`                                            | The geographical location that the result should be adapted for. Using this parameter correctly is extremely important to get the right data. For more information, read about our suggested `geo_location` parameter structures [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/geo-location#google). | -                         |
-| `user_agent_type`                                         | Device type and browser. The full list can be found [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/user-agent-type).                                                                                                              | `desktop`                 |
-| `render`                                                  | Enables JavaScript rendering. [**More info.**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/javascript-rendering)                                                                                                                                          |                           |
-| `callback_url`                                            | URL to your callback endpoint. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/integration-methods/push-pull#callback).                                                                                                                                  | -                         |
+| `locale`                                                  | `Accept-Language` header value which changes your Google Shopping page web interface language. [**More info**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/localization/domain-locale-results-language#locale-1).                                                                                                                              | -                         |
+| `results_language`                                        | Results language. List of supported Google languages can be found [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/localization/domain-locale-results-language#results-language).                                                                                                                                                                | -                         |
+| `geo_location`                                            | The geographical location that the result should be adapted for. Using this parameter correctly is extremely important to get the right data. For more information, read about our suggested `geo_location` parameter structures [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/localization/serp-localization#google). | -                         |
+| `user_agent_type`                                         | Device type and browser. The full list can be found [**here**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/http-context-and-job-management/user-agent-type).                                                                                                              | `desktop`                 |
+| `render`                                                  | Enables JavaScript rendering when set to html. Required to receive additional pricing results from "More stores" section. [**More info.**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features/js-rendering-and-browser-control/javascript-rendering)                                                                                                                                          |                           |
+| `callback_url`                                            | URL to your callback endpoint. [**More info**](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/integration-methods/push-pull#callback).                                                                                                                                  | -                         |
 | `parse`                                                   | `true` will return parsed data.                                                                                                                                                            | -                         |
-
-\- required parameter
 
 #### Python code example
 
-In the code example below, we make a request to retrieve the product page for product ID `5007040952399054528` from Google Shopping on `com` domain.
+> [!IMPORTANT]  
+> The `query` parameter must contain a valid product token generated through the `google_shopping_search` [source](https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google/shopping/shopping-search).
+
+In the code example below, we make a request to retrieve the product page from Google Shopping.
 
 ```python
+import json
 import requests
-from pprint import pprint
-
 
 # Structure payload.
 payload = {
     'source': 'google_shopping_product',
-    'domain': 'com',
-    'query': '5007040952399054528',
+    # Get the product token from search results
+    'query': 'eyJjYXRhbG9naWQiOiAiODU5MDM3MTQzMDU2NjE1ODI1MiIsICJncGNpZCI6ICIxMDgzMzg0MTk4NjQ2MjAyMTYzMSIsICJpbWFnZURvY2lkIjogIjk1ODcyNDM4NDcwODcwNzM1ODYiLCAibWlkIjogIjU3NjQ2MjUxMTM1NDY1MjkyOSIsICJwdm8iOiAiMTkiLCAicHZ0IjogImEiLCAicmRzIjogIlBDXzEwODMzODQxOTg2NDYyMDIxNjMxfFBST0RfUENfMTA4MzM4NDE5ODY0NjIwMjE2MzEiLCAicHJvZHVjdGlkIjogIiIsICJxdWVyeSI6ICJhZGlkYXMifQ==',
+    'geo_location': 'New York,New York,United States',
+    'parse': True
 }
 
 # Get response.
 response = requests.request(
     'POST',
     'https://realtime.oxylabs.io/v1/queries',
-    auth=('user', 'pass1'),
-    json=payload,
+    auth=('USERNAME', 'PASSWORD'),
+    json=payload
 )
+print(response.json())
 
-# Print prettified response to stdout.
-pprint(response.json())
+with open('shopping_product.json', 'w') as f:
+    json.dump(response.json(), f, indent=2)
 ```
 Code examples for other languages can be found [**here.**](https://github.com/oxylabs/google-shopping-scraper/tree/main/code%20examples)
-
-### Product Pricing
-
-The `google_shopping_pricing` source is designed to retrieve pages containing lists of offers available for a product ID of your choice.
-
-#### Query parameters
-
-| Parameter                                                 | Description                                                                                                                                                                                                                                                    | Default Value             |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| <mark style="background-color:green;">**`source`**</mark> | Data source. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/google).                                                                                                                                                           | `google_shopping_pricing` |
-| `domain`                                                  | Domain localization                                                                                                                                                                                                                                            | com                       |
-| <mark style="background-color:green;">**`query`**</mark>  | UTF-encoded product code                                                                                                                                                                                                                                       | -                         |
-| `start_page`                                              | Starting page number                                                                                                                                                                                                                                           | `1`                       |
-| `pages`                                                   | Number of pages to retrieve                                                                                                                                                                                                                                    | `1`                       |
-| `locale`                                                  | `Accept-Language` header value which changes your Google Shopping page web interface language. [**More info**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/domain-locale-results-language#locale-1).                                                                                                                              | -                         |
-| `results_language`                                        | Results language. List of supported Google languages can be found [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/domain-locale-results-language#results-language).                                                                                                                                                                | -                         |
-| `geo_location`                                            | The geographical location that the result should be adapted for. Using this parameter correctly is extremely important to get the right data. For more information, read about our suggested `geo_location` parameter structures [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/geo-location#google). | -                         |
-| `user_agent_type`                                         | Device type and browser. The full list can be found [**here**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/user-agent-type).                                                                                                              | `desktop`                 |
-| `render`                                                  | Enables JavaScript rendering. [**More info.**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/features/javascript-rendering)                                                                                                                                          |                           |
-| `callback_url`                                            | URL to your callback endpoint. [**More info.**](https://developers.oxylabs.io/scraper-apis/web-scraper-api/integration-methods/push-pull#callback)                                                                                                                                  | -                         |
-| `parse`                                                   | `true` will return parsed data.                                                                                                                                                            | -                         |
-\- required parameter
-
-#### Python code example
-
-In the code example below, we make a request to retrieve the product pricing page for product ID `5007040952399054528` from Google Shopping on `google.com`.
-
-```python
-import requests
-from pprint import pprint
-
-
-# Structure payload.
-payload = {
-    'source': 'google_shopping_pricing',
-    'domain': 'com',
-    'query': '5007040952399054528',
-}
-
-# Get response.
-response = requests.request(
-    'POST',
-    'https://realtime.oxylabs.io/v1/queries',
-    auth=('user', 'pass1'),
-    json=payload,
-)
-
-# Print prettified response to stdout.
-pprint(response.json())
-```
-
-Code examples for other languages can be found [**here.**](https://github.com/oxylabs/google-shopping-scraper/tree/main/code%20examples).
 
 If you have questions or concerns about Google Shopping Scraper or associated features, get in touch via (support@oxylabs.io) or through the live chat on our [**website**](https://oxylabs.io/).
 
