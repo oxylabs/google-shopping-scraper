@@ -8,6 +8,6 @@ from pydantic import BaseModel
 class ShoppingItem(BaseModel):
     title: str
     price: str
-    delivery_price: str
-    review: str | None
-    url: str
+    rating: str | None 
+    reviews: str | None
+    store: str | None
