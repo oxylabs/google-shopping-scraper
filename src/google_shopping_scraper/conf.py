@@ -10,7 +10,7 @@ from pydantic_settings import BaseSettings
 class GoogleShoppingScraperSettings(BaseSettings):
     """Settings class for Google Shopping Scraper"""
 
-    url: str = "https://www.google.com/search?tbm=shop"
+    url: str = "https://www.google.com/search?udm=28"
 
     def get_shopping_url(self, query: str) -> str:
         """Returns a Google Shopping URL for a given query string."""
