@@ -32,7 +32,7 @@ class GoogleShoppingDataCollector:
         self._logger.info(f"Writing {len(items)} items to {self._output_file}..")
         shopping_items = [item.model_dump() for item in items]
         df = pd.DataFrame(shopping_items)
-        df.to_csv(self._output_file)
+        df.to_csv(self._output_file, index=False)
 
     def save_shopping_data_for_query(self, query: str) -> None:
         """
